@@ -1,0 +1,42 @@
+
+   <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Opción para cambiar el idioma -->
+    <PreferenceCategory>
+        <ListPreference
+            android:key="language_preference"
+            android:title="Seleccionar idioma"
+            android:defaultValue="es"
+            android:entries="@array/language_entries"
+            android:entryValues="@array/language_values"
+            android:summary="%s"
+            android:selectable="true" />
+    </PreferenceCategory>
+
+    <!-- Opción para habilitar/deshabilitar eliminación de Pokémon -->
+    <PreferenceCategory>
+        <SwitchPreferenceCompat
+            android:key="delete_pokemon_enabled"
+            android:title="Eliminar Pokémon"
+            android:defaultValue="false"
+           />
+    </PreferenceCategory>
+
+    <!-- Opción "Acerca de" -->
+    <PreferenceCategory>
+        <Preference
+            android:key="about"
+            android:title="Acerca de"
+           />
+    </PreferenceCategory>
+
+    <!-- Opción para cerrar sesión -->
+    <PreferenceCategory>
+        <Preference
+            android:key="logout"
+            android:title="Cerrar sesión"
+           />
+    </PreferenceCategory>
+
+
+</PreferenceScreen>
