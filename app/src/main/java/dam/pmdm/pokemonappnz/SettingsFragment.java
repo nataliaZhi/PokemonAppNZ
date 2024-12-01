@@ -90,12 +90,13 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
     private void logout() {
         // Cerrar sesión de Firebase
-//        FirebaseAuth.getInstance().signOut();
-//
-//        // Redirigir a la pantalla de inicio de sesión
-//        Intent intent = new Intent(requireContext(), LoginActivity.class);
-//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//        startActivity(intent);
-//        requireActivity().finish();
+       FirebaseAuth.getInstance().signOut();
+
+
+       // Redirigir a la pantalla de inicio de sesión
+       Intent intent = new Intent(requireContext(), LoginActivity.class);
+       intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+       startActivity(intent);
+       requireActivity().finish();
     }
 }

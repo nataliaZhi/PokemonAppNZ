@@ -1,5 +1,6 @@
 package dam.pmdm.pokemonappnz;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.MenuItem;
@@ -17,6 +18,9 @@ import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import dam.pmdm.pokemonappnz.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -25,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
 
     // Controlador de navegación
     private NavController navController;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,4 +108,14 @@ public class MainActivity extends AppCompatActivity {
         // Maneja la navegación hacia arriba
         return super.onSupportNavigateUp() || navController.navigateUp();
     }
-}
+
+
+
+    }
+
+
+
+
+
+
+

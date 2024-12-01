@@ -1,6 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.google.gms.google.services)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -48,6 +48,7 @@ dependencies {
     implementation(libs.activity)
     implementation(libs.constraintlayout)
     implementation(libs.preference)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
@@ -71,10 +72,12 @@ dependencies {
 
 
     // Dependencias de Firebase
-    implementation ("com.google.firebase:firebase-auth:23.1.0") // Firebase Authentication
-    implementation("com.google.firebase:firebase-database:21.0.0") // Firebase Realtime Database
-    implementation("com.google.firebase:firebase-firestore:25.1.1") // Firebase Firestore
-    implementation("com.google.firebase:firebase-analytics-ktx:22.1.2") // Firebase Analytics
+    implementation (platform("com.google.firebase:firebase-bom:33.6.0"))
+    implementation("com.google.firebase:firebase-analytics")
+    implementation ("com.google.firebase:firebase-auth")
+    implementation( "com.firebaseui:firebase-ui-auth:8.0.0")
+    implementation("com.google.android.gms:play-services-auth:20.7.0")
+
 
     // Coroutines para operaciones asíncronas
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
