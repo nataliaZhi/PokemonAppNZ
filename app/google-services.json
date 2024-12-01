@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "399197516724",
+    "project_id": "pokemonappnz",
+    "storage_bucket": "pokemonappnz.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:399197516724:android:083ea9d078a9b87942b8e1",
+        "android_client_info": {
+          "package_name": "dam.pmdm.pokemonappnz"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0jplk1PU_9BNWTJyzg84L1S5j--tEa5k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
