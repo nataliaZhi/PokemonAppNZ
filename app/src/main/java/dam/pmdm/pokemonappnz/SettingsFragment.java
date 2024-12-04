@@ -11,7 +11,6 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
 import androidx.preference.SwitchPreferenceCompat;
-
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Locale;
@@ -89,6 +88,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     }
 
     private void logout() {
+
         // Cerrar sesión de Firebase
        FirebaseAuth.getInstance().signOut();
 
@@ -99,4 +99,6 @@ public class SettingsFragment extends PreferenceFragmentCompat {
        startActivity(intent);
        requireActivity().finish();
     }
+
+
 }

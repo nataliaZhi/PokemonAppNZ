@@ -19,7 +19,7 @@ public class CapturedFragment extends Fragment {
 
 
     private FragmentCapturedBinding binding;
-    private ArrayList<Pokemon> capturedPokemons;
+    private ArrayList<PokemonCaptured> capturedPokemons;
     private CapturedPokemonAdapter adapter;
 
     @Nullable
@@ -38,7 +38,7 @@ public class CapturedFragment extends Fragment {
         capturedPokemons = new ArrayList<>();
 
         // Cargar los datos desde la API
-        loadPokemons();
+        loadPokemonsFirebase();
 
         // Configurar el RecyclerView
         adapter = new CapturedPokemonAdapter(capturedPokemons, requireContext());
@@ -48,55 +48,55 @@ public class CapturedFragment extends Fragment {
 
     }
 
-    private void loadPokemons() {
-
-    //para prueba manual
-
-            capturedPokemons.add(new Pokemon(
-                    "Bulbasaur",
-                    1,
-                    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
-                    Arrays.asList("Grass", "Poison"),
-                    6.9f,  // Peso en kg
-                    0.7f   // Altura en metros
-            ));
-
-            capturedPokemons.add(new Pokemon(
-                    "Charmander",
-                    4,
-                    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
-                    Arrays.asList("Fire"),
-                    8.5f,  // Peso en kg
-                    0.6f   // Altura en metros
-            ));
-
-            capturedPokemons.add(new Pokemon(
-                    "Squirtle",
-                    7,
-                    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png",
-                    Arrays.asList("Water"),
-                    9.0f,  // Peso en kg
-                    0.5f   // Altura en metros
-            ));
-
-            capturedPokemons.add(new Pokemon(
-                    "Pikachu",
-                    25,
-                    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
-                    Arrays.asList("Electric"),
-                    6.0f,  // Peso en kg
-                    0.4f   // Altura en metros
-            ));
-
-            capturedPokemons.add(new Pokemon(
-                    "Eevee",
-                    133,
-                    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/133.png",
-                    Arrays.asList("Normal"),
-                    6.5f,  // Peso en kg
-                    0.3f   // Altura en metros
-            ));
-
+    private void loadPokemonsFirebase() {
+//
+//    //para prueba manual
+//
+//            capturedPokemons.add(new PokemonCaptured(
+//                    "Bulbasaur",
+//                    1,
+//                    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+//                    Arrays.asList("Grass", "Poison"),
+//                    6.9f,  // Peso en kg
+//                    0.7f   // Altura en metros
+//            ));
+//
+//            capturedPokemons.add(new PokemonCaptured(
+//                    "Charmander",
+//                    4,
+//                    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
+//                    Arrays.asList("Fire"),
+//                    8.5f,  // Peso en kg
+//                    0.6f   // Altura en metros
+//            ));
+//
+//            capturedPokemons.add(new PokemonCaptured(
+//                    "Squirtle",
+//                    7,
+//                    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png",
+//                    Arrays.asList("Water"),
+//                    9.0f,  // Peso en kg
+//                    0.5f   // Altura en metros
+//            ));
+//
+//            capturedPokemons.add(new PokemonCaptured(
+//                    "Pikachu",
+//                    25,
+//                    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
+//                    Arrays.asList("Electric"),
+//                    6.0f,  // Peso en kg
+//                    0.4f   // Altura en metros
+//            ));
+//
+//            capturedPokemons.add(new PokemonCaptured(
+//                    "Eevee",
+//                    133,
+//                    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/133.png",
+//                    Arrays.asList("Normal"),
+//                    6.5f,  // Peso en kg
+//                    0.3f   // Altura en metros
+//            ));
+//
 
         }
 

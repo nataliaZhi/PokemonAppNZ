@@ -1,25 +1,17 @@
 package dam.pmdm.pokemonappnz;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
-
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import dam.pmdm.pokemonappnz.databinding.ActivityMainBinding;
 
@@ -83,15 +75,44 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    // Método que se llama cuando un Pokémon es clickeado
-    public void onPokemonClicked(Pokemon pokemon, View view) {
+    // Método que se llama cuando un Pokémon de Pokedex es clickeado
+    public void onPokemonClicked(PokemonCaptured pokemon, View view) {
+
+
+
+        //  cuando el usuario hace clic en un Pokémon
+        // Crear un Bundle para pasar los datos al PokemonDetailFragment
+//        Bundle bundle = new Bundle();
+//        bundle.putString("name", pokemon.getName()); // Pasa el nombre del Pokémon
+//        bundle.putInt("index", pokemon.getIndex()); // Pasa el índice del Pokémon (por ejemplo, #001)
+//        bundle.putString("types", TextUtils.join(", ", pokemon.getTypes())); // Pasa los tipos del Pokémon
+//        bundle.putString("image", pokemon.getImageUrl()); // Pasa la URL de la imagen del Pokémon
+//        bundle.putFloat("weight", pokemon.getWeight()); // Pasa el peso del Pokémon
+//        bundle.putFloat("height", pokemon.getHeight()); // Pasa la altura del Pokémon
+//
+//
+//        // Navegar al PokemonDetailFragment con el Bundle
+//        Navigation.findNavController(view).navigate(R.id.pokemonDetailFragment, bundle);
+//
+//        //  mostrar detalles del Pokémon
+//        Toast.makeText(this, "Clicked on: " + pokemon.getName(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        // Maneja la navegación hacia arriba
+        return super.onSupportNavigateUp() || navController.navigateUp();
+    }
+
+    // Método que se llama cuando un Pokémon Capturado es clickeado
+    public void onCapturedPokemonClicked(PokemonCaptured pokemon, View view) {
         //  cuando el usuario hace clic en un Pokémon
         // Crear un Bundle para pasar los datos al PokemonDetailFragment
         Bundle bundle = new Bundle();
         bundle.putString("name", pokemon.getName()); // Pasa el nombre del Pokémon
-        bundle.putInt("index", pokemon.getIndex()); // Pasa el índice del Pokémon (por ejemplo, #001)
+        bundle.putInt("index",pokemon.getId()); // Pasa el índice del Pokémon
         bundle.putString("types", TextUtils.join(", ", pokemon.getTypes())); // Pasa los tipos del Pokémon
-        bundle.putString("image", pokemon.getImageUrl()); // Pasa la URL de la imagen del Pokémon
+        bundle.putString("image", pokemon.getSprites().getFrontDefault()); // Pasa la URL de la imagen del Pokémon
         bundle.putFloat("weight", pokemon.getWeight()); // Pasa el peso del Pokémon
         bundle.putFloat("height", pokemon.getHeight()); // Pasa la altura del Pokémon
 
@@ -101,17 +122,9 @@ public class MainActivity extends AppCompatActivity {
 
         //  mostrar detalles del Pokémon
         Toast.makeText(this, "Clicked on: " + pokemon.getName(), Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public boolean onSupportNavigateUp() {
-        // Maneja la navegación hacia arriba
-        return super.onSupportNavigateUp() || navController.navigateUp();
-    }
-
-
 
     }
+}
 
 
 

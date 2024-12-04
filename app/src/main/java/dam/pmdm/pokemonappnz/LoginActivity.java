@@ -4,6 +4,7 @@ package dam.pmdm.pokemonappnz;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
+
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.Nullable;
@@ -20,7 +21,7 @@ import java.util.Arrays;
 import java.util.List;
 
 
-public class LoginActivity  extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,13 +36,12 @@ public class LoginActivity  extends AppCompatActivity {
         Intent signInIntent = AuthUI.getInstance()
                 .createSignInIntentBuilder()
                 .setAvailableProviders(providers)
-                .setLogo(R.drawable.logo_letras)      // Set logo drawable
+                .setLogo(R.drawable.logo_pokemon)      // Set logo drawable
                 .setTheme(R.style.Theme_PokemonAppNZ)      // Set theme
                 .build();
         signInLauncher.launch(signInIntent);
 
     }
-
 
 
     private final ActivityResultLauncher<Intent> signInLauncher = registerForActivityResult(
@@ -51,9 +51,9 @@ public class LoginActivity  extends AppCompatActivity {
                 public void onActivityResult(FirebaseAuthUIAuthenticationResult result) {
                     onSignInResult(result);
                 }
+
             }
     );
-
 
 
     private void onSignInResult(FirebaseAuthUIAuthenticationResult result) {
@@ -70,14 +70,14 @@ public class LoginActivity  extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
-        if(user !=null){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
             goToMainActivity();
         } else startSignIn();
     }
 
     private void goToMainActivity() {
-        Intent intent=new Intent(this,MainActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
     }
