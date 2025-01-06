@@ -8,4 +8,8 @@
     <color name="green">#99CC33</color>
     <color name="blue">#3DD9FF</color>
     <color name="brown">#7F3535</color>
+<!-- pokemon details-->
+    <color name="background">#FFFFFF</color> <!-- Fondo blanco para buen contraste -->
+    <color name="textPrimary">#000000</color> <!-- Negro para texto principal -->
+    <color name="textSecondary">#555555</color> <!-- Gris oscuro para texto secundario -->
 </resources>

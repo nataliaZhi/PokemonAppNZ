@@ -1,60 +1,60 @@
 package dam.pmdm.pokemonappnz;
 
+
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.fragment.NavHostFragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+import com.squareup.picasso.Picasso;
+import java.util.Locale;
 
 import dam.pmdm.pokemonappnz.databinding.FragmentPokemonDetailBinding;
 
-
+/**
+ * Fragmento que muestra los detalles de un Pokémon.
+ */
 public class PokemonDetailFragment extends Fragment {
 
-private FragmentPokemonDetailBinding binding;
+    // ViewBinding para FragmentPokemonDetailBinding
+    private FragmentPokemonDetailBinding binding;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        binding=FragmentPokemonDetailBinding.inflate(inflater,container,false);
+        binding = FragmentPokemonDetailBinding.inflate(inflater, container, false);
         return binding.getRoot();
-
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Obtener datos del argumento que inicia este fragmento
+        // Obtener los detalles del Pokémon del Bundle
+        if (getArguments() != null) {
+            String pokemonName = getArguments().getString("name");
+            int pokemonId = getArguments().getInt("index");
+            String pokemonTypes = getArguments().getString("types");
+            String pokemonImage = getArguments().getString("image");
+            int pokemonWeight = getArguments().getInt("weight");
+            int pokemonHeight = getArguments().getInt("height");
 
-        if(getArguments()!=null){
-            String pokemonName=getArguments().getString("pokemonName");
-            String pokemonIndex=getArguments().getString("pokemonIndex");
-            String pokemonTypes=getArguments().getString("pokemonTypes");
-            String pokemonWeight=getArguments().getString("pokemonWeight");
-            String pokemonHeight=getArguments().getString("pokemonHeight");
-
-            // Asignar los datos a los componentes
+            // Mostrar los detalles del Pokémon en las vistas
             binding.pokemonName.setText(pokemonName);
-            binding.pokemonIndex.setText(pokemonIndex);
-            binding.pokemonTypes.setText(pokemonTypes);
-            binding.pokemonWeight.setText(pokemonWeight);
-            binding.pokemonHeight.setText(pokemonHeight);
+            binding.pokemonTypes.setText(String.format(Locale.getDefault(), getString(R.string.type), pokemonTypes));
+            binding.pokemonWeight.setText(String.format(Locale.getDefault(), getString(R.string.weight), pokemonWeight));
+            binding.pokemonHeight.setText(String.format(Locale.getDefault(), getString(R.string.height), pokemonHeight));
+
+            // Cargar la imagen del Pokémon usando Picasso
+            Picasso.get().load(pokemonImage).into(binding.pokemonImage);
+        } else {
+            Toast.makeText(getContext(), R.string.error_loading_pokemon_details, Toast.LENGTH_SHORT).show();
         }
-        //  NavController para la navegación
-        NavController navController = NavHostFragment.findNavController(PokemonDetailFragment.this);
-        binding.btnBack.setOnClickListener(v -> {
-            // Navegar al fragmento de Pokémon Capturados
-            navController.navigate(R.id.capturedFragment);
-        });
     }
 
     @Override

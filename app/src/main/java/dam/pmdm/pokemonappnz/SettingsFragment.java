@@ -1,11 +1,13 @@
 package dam.pmdm.pokemonappnz;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
@@ -65,8 +67,8 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         Locale.setDefault(locale);
         Configuration config = new Configuration();
         config.setLocale(locale);
-        requireActivity().getResources().updateConfiguration(config, requireActivity().getResources().getDisplayMetrics());
-
+       // requireActivity().getResources().updateConfiguration(config, requireActivity().getResources().getDisplayMetrics());
+        Context context = requireActivity().createConfigurationContext(config);
         // Reiniciar la actividad para aplicar el nuevo idioma
         requireActivity().recreate();
     }
@@ -99,6 +101,15 @@ public class SettingsFragment extends PreferenceFragmentCompat {
        startActivity(intent);
        requireActivity().finish();
     }
+    
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Cambia el título del ActionBar
+        if (getActivity() != null) {
+            ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.title_settings);
+        }
+    }
 
 }

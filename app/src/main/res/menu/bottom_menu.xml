@@ -4,16 +4,19 @@
     <!-- Tab 1: Pokémon Capturados -->
     <item
         android:id="@+id/navigation_captured"
+        android:icon="@drawable/ic_pokemon"
         android:title="@string/title_captured" />
 
     <!-- Tab 2: Pokédex -->
     <item
         android:id="@+id/navigation_pokedex"
+        android:icon="@drawable/ic_pokedex"
         android:title="@string/title_pokedex" />
 
     <!-- Tab 3: Ajustes -->
     <item
         android:id="@+id/navigation_settings"
+        android:icon="@drawable/ic_settings"
         android:title="@string/title_settings" />
 
 </menu>

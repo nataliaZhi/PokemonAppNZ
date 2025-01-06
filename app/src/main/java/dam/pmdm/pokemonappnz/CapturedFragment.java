@@ -1,5 +1,6 @@
 package dam.pmdm.pokemonappnz;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,18 +11,36 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import dam.pmdm.pokemonappnz.databinding.FragmentCapturedBinding;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 
+
+/**
+ * CapturedFragment es la clase que maneja la pestaña de Pokémon capturados de la aplicación.
+ * Muestra una lista de Pokémon que han sido capturados y almacenados en Firebase Firestore.
+ */
 public class CapturedFragment extends Fragment {
 
-
+    // ViewBinding para FragmentCapturedBinding
     private FragmentCapturedBinding binding;
+
+    // Lista de Pokémon capturados
     private ArrayList<PokemonCaptured> capturedPokemons;
+
+    // Adaptador para el RecyclerView
     private CapturedPokemonAdapter adapter;
 
+    /**
+     * Método que se llama cuando se crea la vista del fragmento.
+     * @param inflater Inflater para inflar la vista del fragmento.
+     * @param container Contenedor padre del fragmento.
+     * @param savedInstanceState Estado guardado del fragmento.
+     * @return La vista raíz del fragmento.
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -31,75 +50,54 @@ public class CapturedFragment extends Fragment {
         return binding.getRoot();
     }
 
+    /**
+     * Método que se llama después de que la vista del fragmento ha sido creada.
+     * @param view La vista del fragmento.
+     * @param savedInstanceState Estado guardado del fragmento.
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         // Inicializa la lista de pokémons capturados (antes de cargar datos)
         capturedPokemons = new ArrayList<>();
 
-        // Cargar los datos desde la API
+        // Cargar los datos desde Firebase
         loadPokemonsFirebase();
 
         // Configurar el RecyclerView
         adapter = new CapturedPokemonAdapter(capturedPokemons, requireContext());
         binding.recyclerViewCaptured.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.recyclerViewCaptured.setAdapter(adapter);
-
-
     }
 
+    /**
+     * Carga la lista de Pokémon capturados desde Firebase Firestore.
+     * Los datos se obtienen de la colección "captured_pokemon" y se añaden a la lista capturedPokemons.
+     */
+    @SuppressLint("NotifyDataSetChanged")
     private void loadPokemonsFirebase() {
-//
-//    //para prueba manual
-//
-//            capturedPokemons.add(new PokemonCaptured(
-//                    "Bulbasaur",
-//                    1,
-//                    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
-//                    Arrays.asList("Grass", "Poison"),
-//                    6.9f,  // Peso en kg
-//                    0.7f   // Altura en metros
-//            ));
-//
-//            capturedPokemons.add(new PokemonCaptured(
-//                    "Charmander",
-//                    4,
-//                    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
-//                    Arrays.asList("Fire"),
-//                    8.5f,  // Peso en kg
-//                    0.6f   // Altura en metros
-//            ));
-//
-//            capturedPokemons.add(new PokemonCaptured(
-//                    "Squirtle",
-//                    7,
-//                    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png",
-//                    Arrays.asList("Water"),
-//                    9.0f,  // Peso en kg
-//                    0.5f   // Altura en metros
-//            ));
-//
-//            capturedPokemons.add(new PokemonCaptured(
-//                    "Pikachu",
-//                    25,
-//                    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
-//                    Arrays.asList("Electric"),
-//                    6.0f,  // Peso en kg
-//                    0.4f   // Altura en metros
-//            ));
-//
-//            capturedPokemons.add(new PokemonCaptured(
-//                    "Eevee",
-//                    133,
-//                    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/133.png",
-//                    Arrays.asList("Normal"),
-//                    6.5f,  // Peso en kg
-//                    0.3f   // Altura en metros
-//            ));
-//
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("captured_pokemon")
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            PokemonCaptured pokemon = document.toObject(PokemonCaptured.class);
+                            capturedPokemons.add(pokemon);
+                        }
+                        // Notifica al adaptador que los datos han cambiado
+                        adapter.notifyDataSetChanged();
+                    } else {
+                        // Manejar el error
+                        Toast.makeText(getContext(), "Error al cargar los Pokémon: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
 
-        }
-
+    /**
+     * Método que se llama cuando el fragmento se vuelve visible para el usuario.
+     */
     @Override
     public void onStart() {
         super.onStart();

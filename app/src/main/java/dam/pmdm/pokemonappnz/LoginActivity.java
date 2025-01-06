@@ -32,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     private void startSignIn() {
         List<AuthUI.IdpConfig> providers = Arrays.asList(
                 new AuthUI.IdpConfig.EmailBuilder().build());
+              //  new AuthUI.IdpConfig.GoogleBuilder().build());
 
         Intent signInIntent = AuthUI.getInstance()
                 .createSignInIntentBuilder()
@@ -46,6 +47,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private final ActivityResultLauncher<Intent> signInLauncher = registerForActivityResult(
             new FirebaseAuthUIActivityResultContract(),
+
             new ActivityResultCallback<FirebaseAuthUIAuthenticationResult>() {
                 @Override
                 public void onActivityResult(FirebaseAuthUIAuthenticationResult result) {

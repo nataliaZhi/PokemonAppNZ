@@ -8,8 +8,19 @@
     <string name="detail_title">"Detalles del Pokemon "</string>
     <string name="language">Idioma</string>
     <string name="seleccionar_idioma">Seleccionar idioma</string>
-    <string name="about">Acerca de...</string>
+    <string name="about">Acerca de</string>
     <string name="developer_name">Zhilyakova Natalia</string>
     <string name="version">Version 1.0.0</string>
+    <string name="delete_pokemon">eliminar pokemon</string>
+
+
+    //CapturedPokemonAdapter
+    <string name="index">Número: %1$d</string>
+    <string name="type">Tipo: %1$s</string>
+    <string name="weight">Peso: %1$d hectogramos</string>
+    <string name="height">Altura: %1$d decímetros</string>
+    <string name="delete_pokemon_error">Error al cargar los Pokémon: %1$s</string>
+    <string name="error_loading_pokemon_details">Error al cargar detalles del Pokemon</string>
+
 
 </resources>
