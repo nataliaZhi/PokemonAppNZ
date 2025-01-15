@@ -7,20 +7,37 @@
     <string name="pokemon_image">Imagen pokemon</string>
     <string name="detail_title">"Detalles del Pokemon "</string>
     <string name="language">Idioma</string>
-    <string name="seleccionar_idioma">Seleccionar idioma</string>
+    <string name="select_language">Seleccionar idioma</string>
     <string name="about">Acerca de</string>
     <string name="developer_name">Zhilyakova Natalia</string>
     <string name="version">Version 1.0.0</string>
     <string name="delete_pokemon">eliminar pokemon</string>
 
 
-    //CapturedPokemonAdapter
+<!--    CapturedPokemonAdapter-->
     <string name="index">Número: %1$d</string>
     <string name="type">Tipo: %1$s</string>
     <string name="weight">Peso: %1$d hectogramos</string>
     <string name="height">Altura: %1$d decímetros</string>
     <string name="delete_pokemon_error">Error al cargar los Pokémon: %1$s</string>
     <string name="error_loading_pokemon_details">Error al cargar detalles del Pokemon</string>
+    <string name="clicked_on">"Clicked on: "</string>
+    <string name="delete_pokemon_title">Eliminar Pokémon</string>
+    <string name="logout">Cerrar sesion</string>
 
+<!--    PokemonService-->
+    <string name="pokemon_saved_successfully">Pokémon guardado exitosamente.</string>
+    <string name="pokemon_save_error">Error al guardar el Pokémon: %1$s</string>
+    <string name="pokemon_deleted_successfully">Pokémon eliminado exitosamente.</string>
+    <string name="pokemon_delete_error">Error al eliminar el Pokémon: %1$s</string>
+
+
+    <string name="error_loading_data">Error al cargar datos</string>
+    <string name="error_loading_pokemon">Error al cargar  Pokémon</string>
+
+    <string name="logout_title">Cerrar Sesión</string>
+    <string name="logout_message">¿Estás seguro de que quieres cerrar sesión?</string>
+    <string name="yes">Sí</string>
+    <string name="no">No</string>
 
 </resources>

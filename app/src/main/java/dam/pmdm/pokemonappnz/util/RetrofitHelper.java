@@ -1,4 +1,4 @@
-package dam.pmdm.pokemonappnz;
+package dam.pmdm.pokemonappnz.util;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;

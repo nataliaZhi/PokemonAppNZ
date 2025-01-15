@@ -5,7 +5,7 @@
     <PreferenceCategory>
         <ListPreference
             android:key="language_preference"
-            android:title="Seleccionar idioma"
+            android:title="@string/select_language"
             android:defaultValue="es"
             android:entries="@array/language_entries"
             android:entryValues="@array/language_values"
@@ -17,7 +17,7 @@
     <PreferenceCategory>
         <SwitchPreferenceCompat
             android:key="delete_pokemon_enabled"
-            android:title="Eliminar Pokémon"
+            android:title="@string/delete_pokemon_title"
             android:defaultValue="false"
            />
     </PreferenceCategory>
@@ -26,7 +26,7 @@
     <PreferenceCategory>
         <Preference
             android:key="about"
-            android:title="Acerca de"
+            android:title="@string/about"
            />
     </PreferenceCategory>
 
@@ -34,7 +34,7 @@
     <PreferenceCategory>
         <Preference
             android:key="logout"
-            android:title="Cerrar sesión"
+            android:title="@string/logout"
            />
     </PreferenceCategory>
 

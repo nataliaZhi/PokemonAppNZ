@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
+    android:padding="1dp"
     android:background="@color/yellow"
-    tools:context=".PokemonDetailFragment">
+    tools:context=".ui.PokemonDetailFragment">
 
     <!-- Tarjeta para el contenido -->
     <androidx.cardview.widget.CardView
@@ -19,92 +19,96 @@
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
-    android:background="@color/green">
+    >
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/green"
+            android:padding="16dp">
 
-        <!-- Imagen del Pokémon -->
-        <ImageView
-            android:id="@+id/pokemonImage"
-            android:layout_width="0dp"
-            android:layout_height="300dp"
-        android:layout_marginBottom="16dp"
-        android:contentDescription="@string/pokemon_image"
-        android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/logo_pokemon" /> <!-- Placeholder para vista previa -->
+            <!-- Imagen del Pokémon -->
+            <ImageView
+                android:id="@+id/pokemonImage"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:layout_marginBottom="16dp"
+                android:background="@color/blue"
+                android:contentDescription="@string/pokemon_image"
+                android:scaleType="centerCrop"
+                android:elevation="12dp"
+                app:circularflow_defaultRadius="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/logo_pokemon" />
 
-        <!-- Nombre del Pokémon -->
-        <TextView
-            android:id="@+id/pokemonName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textColor="@color/textPrimary"
-            android:textSize="26sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/pokemonImage"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:text="Pikachu" /> <!-- Texto de muestra para vista previa -->
+            <!-- Nombre del Pokémon -->
+            <TextView
+                android:id="@+id/pokemonName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/textPrimary"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/pokemonImage"
+                tools:text="Pikachu" />
 
-        <!-- Índice del Pokémon -->
-        <TextView
-            android:id="@+id/pokemonIndex"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textColor="@color/textSecondary"
-            android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@id/pokemonName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:text="#025" />
+            <TextView
+                android:id="@+id/pokemonIndex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/textSecondary"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/pokemonName"
+                tools:text="#025" />
 
-        <!-- Tipos del Pokémon -->
-        <TextView
-            android:id="@+id/pokemonTypes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textColor="@color/textSecondary"
-            android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@id/pokemonIndex"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:text="Electric" />
+            <!-- Tipos del Pokémon -->
+            <TextView
+                android:id="@+id/pokemonTypes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/textSecondary"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/pokemonIndex"
+                tools:text="Electric" />
 
-        <!-- Peso y altura del Pokémon -->
-        <TextView
-            android:id="@+id/pokemonWeight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textColor="@color/textSecondary"
-            android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@id/pokemonTypes"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:text="Peso: 60 kg" /> <!-- Texto de muestra para vista previa -->
+            <!-- Peso y altura del Pokémon -->
+            <TextView
+                android:id="@+id/pokemonWeight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/textSecondary"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/pokemonTypes"
+                tools:text="Peso: 60 kg" />
 
-        <TextView
-            android:id="@+id/pokemonHeight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textColor="@color/textSecondary"
-            android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@id/pokemonWeight"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:text="Altura: 0.4 m" />
+            <TextView
+                android:id="@+id/pokemonHeight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/textSecondary"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/pokemonWeight"
+                tools:text="Altura: 0.4 m" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

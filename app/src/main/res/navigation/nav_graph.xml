@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/capturedFragment"
-        android:name="dam.pmdm.pokemonappnz.CapturedFragment"
+        android:name="dam.pmdm.pokemonappnz.ui.CapturedFragment"
         android:label="fragment_captured"
         tools:layout="@layout/fragment_captured" >
         <action
@@ -16,16 +16,16 @@
     </fragment>
     <fragment
         android:id="@+id/pokedexFragment"
-        android:name="dam.pmdm.pokemonappnz.PokedexFragment"
+        android:name="dam.pmdm.pokemonappnz.ui.PokedexFragment"
         android:label="fragment_pokedex"
         tools:layout="@layout/fragment_pokedex" />
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="dam.pmdm.pokemonappnz.SettingsFragment"
+        android:name="dam.pmdm.pokemonappnz.ui.SettingsFragment"
         android:label="SettingsFragment" />
     <fragment
         android:id="@+id/pokemonDetailFragment"
-        android:name="dam.pmdm.pokemonappnz.PokemonDetailFragment"
+        android:name="dam.pmdm.pokemonappnz.ui.PokemonDetailFragment"
         android:label="fragment_pokemon_detail"
         tools:layout="@layout/fragment_pokemon_detail" >
         <action

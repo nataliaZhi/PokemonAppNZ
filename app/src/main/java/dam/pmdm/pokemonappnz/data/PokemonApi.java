@@ -1,4 +1,4 @@
-package dam.pmdm.pokemonappnz;
+package dam.pmdm.pokemonappnz.data;
 
 
 import retrofit2.Call;

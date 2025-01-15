@@ -1,4 +1,4 @@
-package dam.pmdm.pokemonappnz;
+package dam.pmdm.pokemonappnz.ui;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -11,6 +11,8 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import dam.pmdm.pokemonappnz.data.PokemonCaptured;
+import dam.pmdm.pokemonappnz.R;
 import dam.pmdm.pokemonappnz.databinding.PokemonCardviewBinding;
 
 /**
@@ -26,7 +28,7 @@ public class CapturedPokemonAdapter extends RecyclerView.Adapter<CapturedPokemon
     private final Context context;
 
     // Indica si la eliminación de Pokémon está habilitada
-    private final boolean isDeletionEnabled;
+    private boolean isDeletionEnabled;
 
     /**
      * Constructor del adaptador CapturedPokemonAdapter.
@@ -108,6 +110,25 @@ public class CapturedPokemonAdapter extends RecyclerView.Adapter<CapturedPokemon
     }
 
     /**
+     * Método para eliminar un Pokémon de la lista y notificar al adaptador.
+     * @param position La posición del Pokémon en la lista.
+     */
+    public void removePokemon(int position) {
+        capturedPokemonList.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, capturedPokemonList.size());
+    }
+
+    /**
+     * Método para habilitar o deshabilitar la eliminación de Pokémon.
+     * @param isEnabled true para habilitar, false para deshabilitar.
+     */
+    public void setDeletionEnabled(boolean isEnabled) {
+        this.isDeletionEnabled = isEnabled;
+        notifyDataSetChanged(); // Notifica al adaptador que los datos han cambiado
+    }
+
+    /**
      * ViewHolder que enlaza las vistas del layout del Pokémon capturado.
      */
     public static class PokemonViewHolder extends RecyclerView.ViewHolder {
@@ -134,9 +155,6 @@ public class CapturedPokemonAdapter extends RecyclerView.Adapter<CapturedPokemon
             binding.weight.setText(String.format(Locale.getDefault(), binding.getRoot().getContext().getString(R.string.weight), pokemon.getWeight()));
             binding.height.setText(String.format(Locale.getDefault(), binding.getRoot().getContext().getString(R.string.height), pokemon.getHeight()));
 
-//            binding.types.setText(String.format("Tipo: %s", pokemon.getTypesAsString()));
-//            binding.weight.setText(String.format("Peso: %d hectogramos", pokemon.getWeight()));
-//            binding.height.setText(String.format("Altura: %d decímetros", pokemon.getHeight()));
 
             // Cargar la imagen con una librería como Picasso
             Picasso.get().load(pokemon.getSprites().getFrontDefault()).into(binding.sprites);

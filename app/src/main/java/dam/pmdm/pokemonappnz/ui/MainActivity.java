@@ -1,5 +1,6 @@
-package dam.pmdm.pokemonappnz;
+package dam.pmdm.pokemonappnz.ui;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -7,12 +8,20 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
+import java.util.List;
+import java.util.Locale;
 
+import dam.pmdm.pokemonappnz.data.PokemonCaptured;
+import dam.pmdm.pokemonappnz.R;
+import dam.pmdm.pokemonappnz.data.PokemonService;
 import dam.pmdm.pokemonappnz.databinding.ActivityMainBinding;
+import dam.pmdm.pokemonappnz.util.PreferencesHelper;
 
 /**
  * MainActivity es la actividad principal de la aplicación que maneja la interfaz de usuario
@@ -29,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
     // Instancia de PokemonService para manejar operaciones con Pokémon
     private PokemonService pokemonService;
 
+    private PokemonViewModel pokemonViewModel;
+
     /**
      * Método que se llama cuando la actividad es creada.
      * @param savedInstanceState Estado guardado de la actividad.
@@ -36,6 +47,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        // Inicializar PreferencesHelper
+        PreferencesHelper preferencesHelper = new PreferencesHelper(this);
+      // Establecer el idioma antes de cargar la actividad.
+        String lang = PreferencesHelper.getSavedLanguage();
+        setLocale(lang); // Aplicar idioma desde SharedPreferences
 
         // Inicializar ViewBinding
         binding = ActivityMainBinding.inflate(getLayoutInflater());
@@ -65,6 +83,44 @@ public class MainActivity extends AppCompatActivity {
 
         // Configurar manualmente el listener del BottomNavigationView
         binding.bottomNavigationView.setOnItemSelectedListener(this::onMenuSelected);
+
+
+        // Obtener una instancia del ViewModel
+        pokemonViewModel = new ViewModelProvider(this).get(PokemonViewModel.class);
+
+        // Observar los cambios en los Pokémon capturados
+        pokemonViewModel.getCapturedPokemons().observe(this, new Observer<List<PokemonCaptured>>() {
+            @Override
+            public void onChanged(List<PokemonCaptured> pokemons) {
+                // Actualizar la UI cuando los datos cambien (por ejemplo, actualizar un RecyclerView)
+              //  capturedPokemonAdapter.notifyDataSetChanged();
+            }
+        });
+
+
+
+
+
+
+
+
+
+    }
+
+    void setLocale(String lang) {
+        Locale locale = new Locale(lang); // Crear un objeto Locale con el código del idioma.
+        Locale.setDefault(locale); // Establecer el idioma como predeterminado.
+
+        // Configurar los recursos para que utilicen el idioma especificado.
+        Configuration config = new Configuration();
+        config.setLocale(locale);
+
+        // Actualizar la configuración de los recursos con el nuevo idioma.
+        getResources().updateConfiguration(config, getResources().getDisplayMetrics());
+        getApplicationContext().createConfigurationContext(config);
+
+        reloadCurrentFragment(); // Recargar el fragmento actual
+
     }
 
     /**
@@ -92,6 +148,9 @@ public class MainActivity extends AppCompatActivity {
     public void onPokemonClicked(PokemonCaptured pokemon, View view) {
         // Guardar el Pokémon en Firestore usando PokemonService
         pokemonService.savePokemon(pokemon);
+        pokemonViewModel.addCapturedPokemon(pokemon);
+        reloadCurrentFragment(); // Recargar el fragmento actual
+
     }
 
     /**
@@ -123,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
         Navigation.findNavController(view).navigate(R.id.pokemonDetailFragment, bundle);
 
         // Mostrar detalles del Pokémon
-        Toast.makeText(this, "Clicked on: " + pokemon.getName(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.clicked_on) + pokemon.getName(), Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -134,7 +193,25 @@ public class MainActivity extends AppCompatActivity {
     public void onDeleteClicked(PokemonCaptured currentPokemon, int position) {
         // Manejar el evento de clic en el botón de eliminar
         pokemonService.deletePokemon(currentPokemon);
+        pokemonViewModel.removeCapturedPokemon(currentPokemon);
+        reloadCurrentFragment(); // Recargar el fragmento actual
+
     }
+
+    /**
+     * Método para recargar el fragmento actual.
+     */
+    public void reloadCurrentFragment() {
+        if (navController != null) {
+            // Obtener el ID del fragmento actual
+            int currentFragmentId = navController.getCurrentDestination().getId();
+            // Navegar al mismo fragmento
+            navController.navigate(currentFragmentId);
+        }
+    }
+
+
+
 }
 
 

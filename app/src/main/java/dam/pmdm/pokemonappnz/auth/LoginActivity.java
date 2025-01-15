@@ -1,4 +1,4 @@
-package dam.pmdm.pokemonappnz;
+package dam.pmdm.pokemonappnz.auth;
 
 
 import android.content.Intent;
@@ -19,6 +19,9 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Arrays;
 import java.util.List;
+
+import dam.pmdm.pokemonappnz.ui.MainActivity;
+import dam.pmdm.pokemonappnz.R;
 
 
 public class LoginActivity extends AppCompatActivity {

@@ -1,5 +1,6 @@
-package dam.pmdm.pokemonappnz;
+package dam.pmdm.pokemonappnz.data;
 
+import dam.pmdm.pokemonappnz.util.RetrofitHelper;
 import retrofit2.Callback;
 /**
  * PokemonRepository es una clase de repositorio que maneja las llamadas a la API de Pokémon.

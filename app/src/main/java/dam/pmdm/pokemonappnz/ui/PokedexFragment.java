@@ -1,4 +1,4 @@
-package dam.pmdm.pokemonappnz;
+package dam.pmdm.pokemonappnz.ui;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -6,13 +6,21 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import dam.pmdm.pokemonappnz.data.PokemonCaptured;
+import dam.pmdm.pokemonappnz.data.PokemonResponse;
+import dam.pmdm.pokemonappnz.R;
+import dam.pmdm.pokemonappnz.data.PokemonRepository;
 import dam.pmdm.pokemonappnz.databinding.FragmentPokedexBinding;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -37,6 +45,9 @@ public class PokedexFragment extends Fragment {
 
     // Repositorio para obtener datos de Pokémon
     private PokemonRepository pokemonRepository;
+
+    // Instancia del ViewModel
+    private PokemonViewModel pokemonViewModel;
 
     /**
      * Método que se llama cuando la vista del fragmento es creada.
@@ -63,15 +74,20 @@ public class PokedexFragment extends Fragment {
 
         // Inicializa la lista de pokémons capturados (antes de cargar datos)
         Pokemons = new ArrayList<>();
+
         pokemonRepository = new PokemonRepository();
 
+        pokemonViewModel = new ViewModelProvider(requireActivity()).get(PokemonViewModel.class);
+
         // Configurar el RecyclerView
-        adapter = new PokedexAdapter(Pokemons, requireContext());
+        adapter = new PokedexAdapter(Pokemons, requireContext(), pokemonViewModel);
         binding.recyclerViewPokedex.setLayoutManager(new GridLayoutManager(getContext(), 2));
         binding.recyclerViewPokedex.setAdapter(adapter);
 
         // Cargar los datos desde la API
         loadPokemonsFromApi();
+
+
     }
 
     /**
@@ -93,7 +109,8 @@ public class PokedexFragment extends Fragment {
             @Override
             public void onFailure(@NonNull Call<PokemonResponse> call, @NonNull Throwable t) {
                 // Manejar error de red
-                Log.e("PokedexFragment", "Error al obtener datos", t);
+                Toast.makeText(requireContext(), getString(R.string.error_loading_data), Toast.LENGTH_SHORT).show();
+
             }
         });
     }
@@ -109,6 +126,11 @@ public class PokedexFragment extends Fragment {
             public void onResponse(@NonNull Call<PokemonCaptured> call, @NonNull Response<PokemonCaptured> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     PokemonCaptured pokemon = response.body();
+                    // Verificar si el Pokémon está capturado
+                    boolean isCaptured = pokemonViewModel.isPokemonCaptured(pokemon.getName());
+                    pokemon.setCaptured(isCaptured);
+
+
                     Pokemons.add(pokemon);
                     adapter.notifyDataSetChanged();
                 }
@@ -117,7 +139,7 @@ public class PokedexFragment extends Fragment {
             @Override
             public void onFailure(@NonNull Call<PokemonCaptured> call, @NonNull Throwable t) {
                 // Manejar error de red
-                Log.e("PokedexFragment", "Error al obtener detalles del Pokémon", t);
+                Toast.makeText(requireContext(), getString(R.string.error_loading_pokemon), Toast.LENGTH_SHORT).show();
             }
         });
     }
