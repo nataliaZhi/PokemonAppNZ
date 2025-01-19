@@ -42,7 +42,6 @@ En esta pantalla se muestran los siguientes detalles de Pokémon: Foto, Nombre, 
   - **Retrofit**: Consumo de la API de Pokémon.
   - **Firebase Authentication y Firestore**: Para autenticación y almacenamiento de datos.
   - **Navigation Component**: Manejo eficiente de navegación entre fragmentos.
-  - **ViewModel y LiveData**: Gestión reactiva de datos.
   - **RecyclerView**: Visualización de listas.
   - **Picasso**: Carga optimizada de imágenes.
   - **SharedPreferences**: Configuración de preferencias locales.
