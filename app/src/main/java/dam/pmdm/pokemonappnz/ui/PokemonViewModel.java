@@ -15,13 +15,16 @@ import dam.pmdm.pokemonappnz.data.PokemonCaptured;
  */
 public class PokemonViewModel extends ViewModel {
     private final MutableLiveData<List<PokemonCaptured>> capturedPokemons = new MutableLiveData<>(new ArrayList<>());
-
+    private final MutableLiveData<PokemonCaptured> updatedPokemon = new MutableLiveData<>();
     /**
      * Obtiene la lista de Pokémon capturados como LiveData.
      * @return LiveData que contiene la lista de Pokémon capturados.
      */
     public LiveData<List<PokemonCaptured>> getCapturedPokemons() {
         return capturedPokemons;
+    }
+    public LiveData<PokemonCaptured> getUpdatedPokemon() {
+        return updatedPokemon;
     }
 
     /**
@@ -35,6 +38,8 @@ public class PokemonViewModel extends ViewModel {
         currentList.add(pokemon);
         // Actualiza el valor de LiveData con la nueva lista
         capturedPokemons.setValue(currentList);
+        // Notificar que un Pokémon específico fue actualizado
+        updatedPokemon.setValue(pokemon);
     }
 
     /**
@@ -48,6 +53,9 @@ public class PokemonViewModel extends ViewModel {
         currentList.remove(pokemon);
         // Actualiza el valor de LiveData con la nueva lista
         capturedPokemons.setValue(currentList);
+
+        // Notificar que un Pokémon específico fue actualizado
+        updatedPokemon.setValue(pokemon);
     }
 
     /**

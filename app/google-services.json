@@ -12,7 +12,20 @@
           "package_name": "dam.pmdm.pokemonappnz"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "399197516724-2n037gf67muol7i4dlik6kgvj1nlvb3k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "dam.pmdm.pokemonappnz",
+            "certificate_hash": "f42e26977b2daa206caecffd3e5bc2594f84d50e"
+          }
+        },
+        {
+          "client_id": "399197516724-vd44l7inpo1p2np1bia0n27hmjirgknq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyA0jplk1PU_9BNWTJyzg84L1S5j--tEa5k"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "399197516724-vd44l7inpo1p2np1bia0n27hmjirgknq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

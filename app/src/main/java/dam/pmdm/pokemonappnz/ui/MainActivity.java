@@ -1,5 +1,6 @@
 package dam.pmdm.pokemonappnz.ui;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -120,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
         getApplicationContext().createConfigurationContext(config);
 
         reloadCurrentFragment(); // Recargar el fragmento actual
+
 
     }
 

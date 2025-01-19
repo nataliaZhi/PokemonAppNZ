@@ -48,7 +48,6 @@ dependencies {
     implementation(libs.activity)
     implementation(libs.constraintlayout)
     implementation(libs.preference)
-
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
@@ -56,16 +55,10 @@ dependencies {
     implementation("androidx.drawerlayout:drawerlayout:1.2.0")
     implementation("androidx.cardview:cardview:1.0.0")
     implementation("androidx.recyclerview:recyclerview:1.3.2")
-//    implementation("androidx.core:core-splashscreen:1.0.1")
     implementation("androidx.fragment:fragment-ktx:1.8.5")
-
-
     implementation("androidx.lifecycle:lifecycle-livedata:2.8.7")
     implementation("androidx.lifecycle:lifecycle-viewmodel-android:2.8.7")
-
-
     implementation ("com.squareup.picasso:picasso:2.71828")
-
     implementation("androidx.navigation:navigation-ui-ktx:2.8.4")
     implementation("androidx.navigation:navigation-fragment-ktx:2.8.4")
 
@@ -77,7 +70,6 @@ dependencies {
     implementation ("com.google.firebase:firebase-auth")
     implementation( "com.firebaseui:firebase-ui-auth:8.0.0")
     implementation("com.google.android.gms:play-services-auth:20.7.0")
-
     implementation("com.google.firebase:firebase-firestore")
 
 

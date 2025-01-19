@@ -84,9 +84,14 @@ public class PokedexFragment extends Fragment {
         binding.recyclerViewPokedex.setLayoutManager(new GridLayoutManager(getContext(), 2));
         binding.recyclerViewPokedex.setAdapter(adapter);
 
+
         // Cargar los datos desde la API
         loadPokemonsFromApi();
 
+      // Observa la lista completa para redibujar
+        pokemonViewModel.getCapturedPokemons().observe(getViewLifecycleOwner(), capturedPokemons -> {
+            adapter.notifyDataSetChanged();
+        });
 
     }
 
@@ -129,8 +134,6 @@ public class PokedexFragment extends Fragment {
                     // Verificar si el Pokémon está capturado
                     boolean isCaptured = pokemonViewModel.isPokemonCaptured(pokemon.getName());
                     pokemon.setCaptured(isCaptured);
-
-
                     Pokemons.add(pokemon);
                     adapter.notifyDataSetChanged();
                 }

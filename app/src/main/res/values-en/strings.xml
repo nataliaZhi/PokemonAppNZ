@@ -3,7 +3,6 @@
     <string name="title_captured">My Pokémon</string>
     <string name="title_pokedex">Pokédex</string>
     <string name="title_settings">Settings</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="pokemon_image">Pokemon Image</string>
     <string name="detail_title">Pokemon Details</string>
     <string name="language">Language</string>
@@ -14,7 +13,7 @@
     <string name="delete_pokemon">Delete Pokemon</string>
 
     <!-- CapturedPokemonAdapter -->
-    <string name="index">Number: %1$d</string>
+    <string name="index">Index in Pokédex: %1$d</string>
     <string name="type">Type: %1$s</string>
     <string name="weight">Weight: %1$d hectograms</string>
     <string name="height">Height: %1$d decimeters</string>
@@ -33,7 +32,6 @@
 <!--    pokedexfragment-->
     <string name="error_loading_data">Error loading data</string>
     <string name="error_loading_pokemon">Error loading Pokémon</string>
-
     <string name="logout_title">Log Out</string>
     <string name="logout_message">Are you sure you want to log out?</string>
     <string name="yes">Yes</string>

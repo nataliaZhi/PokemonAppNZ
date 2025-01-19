@@ -83,6 +83,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         MainActivity mainActivity = (MainActivity) requireActivity();
         mainActivity.setLocale(languageCode);
 
+
     }
 
 

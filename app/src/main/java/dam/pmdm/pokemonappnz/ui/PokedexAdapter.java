@@ -5,7 +5,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,7 +27,7 @@ public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.PokedexV
     // Contexto de la aplicación
     private final Context context;
 
-    private final PokemonViewModel pokemonViewModel;
+    private final  PokemonViewModel pokemonViewModel;
 
     /**
      * Constructor del adaptador PokedexAdapter.
@@ -40,6 +39,9 @@ public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.PokedexV
         this.pokemons = pokemons;
         this.context = context;
         this.pokemonViewModel = pokemonViewModel;
+
+        // Observar los cambios de Pokémon específicos
+        pokemonViewModel.getUpdatedPokemon().observeForever(this::updatePokemon);
 
     }
 
@@ -87,6 +89,17 @@ public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.PokedexV
     @Override
     public int getItemCount() {
         return pokemons.size();
+    }
+    /**
+     * Actualiza un Pokémon específico en la lista y notifica al adaptador.
+     *
+     * @param pokemon El Pokémon que ha sido actualizado.
+     */
+    public void updatePokemon(PokemonCaptured pokemon) {
+        int position = pokemons.indexOf(pokemon);
+        if (position != -1) {
+            notifyItemChanged(position);
+        }
     }
 
     /**
